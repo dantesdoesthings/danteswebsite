@@ -1,13 +1,4 @@
-{% load static %}
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>DantesDoesThings Home</title>
-</head>
-<body>
-Hello World! Welcome to the DantesDoesThings home page.
-<img src="{% static 'index/images/Testing.PNG' %}">
-</body>
-</html>
+{% extends 'common/base.html' %}
+{% block main_content %}
+Hello World! Welcome to the DantesDoesThings home page!
+{% endblock %}
