@@ -1,20 +1,33 @@
-body {background-color: #FFA;}
-.footer {
-background-color: #AAA;
-font-size: large;
-bottom: 0;
-position: absolute;
-width: 100%;
-text-align: center;
+body {
+background-color: #FFA;
+padding: 80px 0px 0px 0px;
+margin: 0% 0% 0% 0%;
+font-family: Helvetica, sans-serif;
 }
 .header {
-background-color: #AAA;
+background-color: #CCC;
 font-size: large;
 top: 0;
 position: absolute;
 width: 100%;
 text-align: center;
+padding: 5px 0px 5px 0px;
+height: 60px;
+}
+.footer {
+background-color: #CCC;
+font-size: large;
+bottom: 0;
+position: absolute;
+width: 100%;
+text-align: center;
+padding: 5px 0px 5px 0px;
 }
 .nav-item {
 display: inline
+}
+.main {
+font-size: large;
+font-color: #111;
+margin: 0% 5% 0% 5%;
 }

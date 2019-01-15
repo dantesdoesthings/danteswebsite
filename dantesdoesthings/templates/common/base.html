@@ -2,7 +2,6 @@
 
 <!DOCTYPE html>
 <html lang="en">
-    {% include 'common/bootstrap.html' %}
     <link rel="stylesheet" type="text/css" href="{% static 'common/css/style.css' %}">
     <head>
         <meta charset="UTF-8">
@@ -10,8 +9,10 @@
     </head>
     <body>
         {% include 'common/navbar.html' %}
+        <div class="main">
         {% block main_content %}
         {% endblock %}
+        </div>
         {% include 'common/footer.html' %}
     </body>
 </html>
