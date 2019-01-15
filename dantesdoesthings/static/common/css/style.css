@@ -26,8 +26,13 @@ padding: 5px 0px 5px 0px;
 .nav-item {
 display: inline
 }
-.main {
+.page-title {
 font-size: large;
+font-color: #111;
+margin: 5px 5% 5px 5%;
+}
+.main {
+font-size: medium;
 font-color: #111;
 margin: 0% 5% 0% 5%;
 }

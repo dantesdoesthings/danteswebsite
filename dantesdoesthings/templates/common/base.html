@@ -9,9 +9,13 @@
     </head>
     <body>
         {% include 'common/navbar.html' %}
+        <div class="page-title">
+            {% block page_title %}
+            {% endblock %}
+        </div>
         <div class="main">
-        {% block main_content %}
-        {% endblock %}
+            {% block main_content %}
+            {% endblock %}
         </div>
         {% include 'common/footer.html' %}
     </body>
