@@ -1,3 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def data_generator(request):
+    return render(request, 'dantes_data_generator/data_generator.html')
