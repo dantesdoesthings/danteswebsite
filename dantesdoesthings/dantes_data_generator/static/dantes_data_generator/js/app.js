@@ -7,6 +7,7 @@ var addPointsSetting = document.getElementById('points-action-add');
 var interpLinearSetting = document.getElementById('interp-linear');
 var outputStyleCSV = document.getElementById('output-style-csv');
 var formElement = document.getElementById('calculation-form');
+var pointValueElement = document.getElementById('point-value-container');
 var curveValues = [];
 var pointsChanged = true;
 // Values for later use
@@ -151,6 +152,7 @@ function fillBorder() {
 }
 // Redraw everything
 function updateCanvas() {
+    updatePointValues();
     clearCanvas();
     fillBorder();
     drawAxes();
@@ -283,6 +285,11 @@ function reversePointCoordinates(pointInput) {
         ]);
     }
     return resultList
+}
+// Updates visuals for the current point values
+function updatePointValues() {
+    console.log(pointList)
+    pointValueElement.innerHTML = JSON.stringify(getPointCoordinates(pointList));
 }
 
 // Add event listeners and perform any initial setup tasks

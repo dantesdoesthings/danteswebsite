@@ -88,3 +88,10 @@ height: 80%;
 margin: auto auto;
 overflow-y: scroll;
 }
+#point-value-container {
+width: 80%;
+height: 100%;
+background: white;
+margin: auto auto;
+overflow-y: scroll;
+}
