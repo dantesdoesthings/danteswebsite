@@ -46,7 +46,7 @@ def generate_linear_data(input_points: list, graph_range: list, num_output_vals:
 
 def generate_spline_data(input_points: list, graph_range: list,
                          num_output_vals: int=20, tension: float=0.5,
-                         num_segments: int=8) -> list:
+                         num_segments: int=10) -> list:
     """Generates data based on the input parameters.
 
     Creates a spline function through the input points, then gives back values that would have
@@ -60,17 +60,11 @@ def generate_spline_data(input_points: list, graph_range: list,
     :return: A list of generated values in form [[x-vals], [y-vals]]
     """
     num_sections = len(input_points[0]) - 1
-    spline_calcs = np.zeros([2, (num_sections + 2) * num_segments + 1])
+    spline_calcs = np.zeros([2, num_sections * num_segments + 1])
     # Make a copy of the input with repeated endpoints
-    start_x = graph_range[0]
-    end_x = graph_range[1]
-    slope1 = (input_points[1][1] - input_points[1][0])/(input_points[0][1] - input_points[0][0])
-    start_y = slope1 * (start_x - input_points[0][0]) + input_points[1][0]
-    slope2 = (input_points[1][-1] - input_points[1][-2])/(input_points[0][-1] - input_points[0][-2])
-    end_y = slope2 * (end_x - input_points[0][-1]) + input_points[1][-1]
     points = np.array([
-        [start_x, start_x] + list(input_points[0]) + [end_x, end_x],
-        [start_y, start_y] + list(input_points[1]) + [end_y, end_y]
+        [input_points[0][0]] + list(input_points[0]) + [input_points[0][-1]],
+        [input_points[1][0]] + list(input_points[1]) + [input_points[1][-1]]
     ], dtype=float)
 
     # Find tension vectors
@@ -125,6 +119,8 @@ def generate_spline_data2(input_points: list, graph_range: list, num_output_vals
     """
     # TODO: Fix or delete because something is wrong with the calculations.
     # Preliminary setup
+    x_vals = input_points[0]
+    y_vals = input_points[1]
     input_points = np.array(input_points)
     num_input_points = len(input_points[0])
     width = graph_range[1] - graph_range[0]
@@ -133,8 +129,6 @@ def generate_spline_data2(input_points: list, graph_range: list, num_output_vals
 
     # Find the values
     # Perform preliminary calculations
-    x_vals = input_points[0]
-    y_vals = input_points[1]
     h_vals = np.diff(x_vals)
     print('h vals', h_vals)
     b_vals = np.diff(y_vals) / h_vals
@@ -145,6 +139,7 @@ def generate_spline_data2(input_points: list, graph_range: list, num_output_vals
     print('u vals', u_vals)
     # Create the system matrix that will be solved
     system_matrix = np.zeros([num_input_points - 2, num_input_points - 2])
+    print('empty sys matrix', system_matrix)
     system_matrix[0][:2] = np.array([v_vals[0], h_vals[1]])
     system_matrix[-1][-2:] = np.array([h_vals[-2], v_vals[-1]])
     for i, row in enumerate(system_matrix[1:-1]):
@@ -193,7 +188,11 @@ def generate_spline_data2(input_points: list, graph_range: list, num_output_vals
 
 
 if __name__ == '__main__':
-    test_input = [[10, 20, 35, 40, 50], [20, 21, 20, 21, 20]]
+    #test_input = [[10, 20, 35, 40], [20, 21, 20, 21]]
     #test_input = [[0.9, 1.3, 1.9, 2.1], [1.3, 1.5, 1.85, 2.1]]
+    test_input = [
+        [0.5, 13.045454545454547, 30.13636363636364, 54.68181818181819, 75.22727272727273, 95.22727272727273],
+        [43.714285714285715, 55.42857142857143, 55.42857142857143, 56.285714285714285, 56.285714285714285, 46.57142857142857]
+    ]
     graph_rng = [0, 80, 0, 50]
-    print(np.array(generate_spline_data(test_input, graph_rng, 10)))
+    print(np.array(generate_spline_data2(test_input, graph_rng, 10)))

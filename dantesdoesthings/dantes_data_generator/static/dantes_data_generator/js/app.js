@@ -137,7 +137,7 @@ function drawCurves() {
         drawAllPoints();
     }
     // Calculate points to make tiny segments from
-    if (pointsChanged) {
+    if (pointsChanged && pointList.length > 1) {
         submitCalculationAjax(false, performDraw);
         pointsChanged = false;
     } else {
