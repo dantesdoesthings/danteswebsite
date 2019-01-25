@@ -1,0 +1,16 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block page_title %}
+DantesDoesThings Projects
+{% endblock %}
+{% block page_head %}
+<h1>Projects</h1>
+{% endblock %}
+{% block main_content %}
+<h2>Welcome to the DantesDoesThings projects page! Here are the current projects and a brief summary of each.</h2>
+<p><a href="{% url 'data_generator' %}">Data Generator</a><br />
+    An app for generating synthetic data.<br />
+    Click to add/remove points for your dataset to pass through, select options, and create synthetic data for whatever purposes you may have.<br />
+    <b>Python tools used</b>: Standard library - JSON reading/writing; NumPy - arrays, matrix operations, linear algebra tools.
+</p>
+{% endblock %}

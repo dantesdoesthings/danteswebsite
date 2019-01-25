@@ -3,7 +3,6 @@ width: 100%;
 height: 100%;
 }
 body {
-background-color: #FFA;
 margin: 0% 0% 0% 0%;
 font-family: Helvetica, sans-serif;
 }
@@ -11,11 +10,12 @@ canvas {
 border: 1px solid #000;
 background-color: #FFF;
 }
-div, pre {
-border: 2px solid #0B0;
+div {
+padding: 5px;
 }
 .nav-item {
-display: inline
+display: inline;
+margin: 0 0.5em;
 }
 .page-title {
 font-size: large;
@@ -27,22 +27,36 @@ min-height: 100%;
 display: grid;
 grid-template-rows: auto 1fr auto;
 grid-template-columns: 100%;
+padding: 0;
+background-color: #000;
 }
 .page-content {
 display: grid;
 grid-template-rows: auto 1fr;
 grid-template-columns: 100%;
+border-right: 2.0em solid #000;
+border-left: 2.0em solid #000;
+background-color: #E0F0E0;
 }
 .navbar {
-background-image: linear-gradient(rgb(200,200,200), rgb(200,200,200), rgba(200,200,200,0.8));
+background-image: linear-gradient(rgb(50,50,50), rgb(50,50,50), rgb(50,50,50), rgb(50,50,50), rgba(50,50,50,0.9));
+background-color: rgb(50,50,50);
 font-size: large;
 text-align: center;
 position: sticky;
 top: 0;
+padding: 0;
+box-shadow: 0 8px 6px -6px #000;
+border-radius: 0 0 0.5em 0.5em;
+}
+.navbar a {
+color: #DDD;
+text-decoration: none;
 }
 .page-main {
 font-size: medium;
 font-color: #111;
+margin: 0 1.0em;
 }
 .footer {
 background-color: #CCC;
@@ -94,4 +108,11 @@ height: 100%;
 background: white;
 margin: auto auto;
 overflow-y: scroll;
+}
+br {
+line-height: 150%;
+}
+h1 {
+font-size: 2em;
+margin: 0.1em .65em;
 }

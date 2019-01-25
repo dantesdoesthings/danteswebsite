@@ -45,8 +45,8 @@ def generate_linear_data(input_points: list, graph_range: list, num_output_vals:
 
 
 def generate_spline_data(input_points: list, graph_range: list,
-                         num_output_vals: int=20, tension: float=0.5,
-                         num_segments: int=10) -> list:
+                         num_output_vals: int=20, tension: float=0.9,
+                         num_segments: int=50) -> list:
     """Generates data based on the input parameters.
 
     Creates a spline function through the input points, then gives back values that would have

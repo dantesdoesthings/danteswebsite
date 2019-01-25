@@ -4,14 +4,14 @@
 DantesDoesThings: Data Generator
 {% endblock %}
 {% block page_head %}
-Data Generator
+<h1>Data Generator</h1>
 {% endblock %}
 {% block main_content %}
 <div>
     Fill in details and select options on the right.
     Add points for the graph to pass through by clicking on the canvas.
     Remove points by selecting "remove" and clicking on the points you want removed.
-    Click submit to draw the curve and to calculate the values of your points.
+    Click submit to calculate the values of your generated data (shown below the graph).
 </div>
 <div class="split-content-rows-2">
     <div class="split-content-cols-2">
@@ -22,10 +22,10 @@ Data Generator
             <form method="POST" name="dataInfoForm" id="calculation-form">
                 {% csrf_token %}
                 <fieldset>
-                    x-min:<input type="text" name="x-min" value="0" id="x-min-field" size="10" />
-                    x-max:<input type="text" name="x-max" value="100" id="x-max-field" size="10" /><br>
-                    y-min:<input type="text" name="y-min" value="0" id="y-min-field" size="10" />
-                    y-max:<input type="text" name="y-max" value="100" id="y-max-field" size="10" /><br>
+                    x-min: <input type="text" name="x-min" value="0" id="x-min-field" size="10" />
+                    x-max: <input type="text" name="x-max" value="100" id="x-max-field" size="10" /><br />
+                    y-min: <input type="text" name="y-min" value="0" id="y-min-field" size="10" />
+                    y-max: <input type="text" name="y-max" value="100" id="y-max-field" size="10" />
                 </fieldset>
                 <fieldset>
                     Points
@@ -33,7 +33,7 @@ Data Generator
                     <input type="radio" name="points-action" value="remove" /> remove <br>
                 </fieldset>
                 <fieldset>
-                    Number of values:<input type="text" name="num_vals" value="20" size="6" /><br>
+                    Number of values to generate: <input type="text" name="num_vals" value="20" size="6" />
                 </fieldset>
                 <fieldset>
                     Interpolation
