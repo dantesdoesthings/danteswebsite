@@ -11,7 +11,11 @@ border: 1px solid #000;
 background-color: #FFF;
 }
 div {
-padding: 5px;
+padding: 0.3em 0;
+}
+a {
+color: blue;
+font-weight: 600;
 }
 .nav-item {
 display: inline;
@@ -52,6 +56,10 @@ border-radius: 0 0 0.5em 0.5em;
 .navbar a {
 color: #DDD;
 text-decoration: none;
+font-weight: normal;
+}
+.page-head {
+margin: 0.5em 1.0em;
 }
 .page-main {
 font-size: medium;
@@ -114,5 +122,6 @@ line-height: 150%;
 }
 h1 {
 font-size: 2em;
-margin: 0.1em .65em;
+padding: 0;
+margin: 0;
 }
