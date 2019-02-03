@@ -1,10 +1,12 @@
+{% load static %}
 <div class="navbar">
-    <ul>
-        <li class="nav-item">
-            <a href="{% url 'index' %}">Home</a>
-        </li>
-        <li class="nav-item">
-            <a href="{% url 'projects' %}">Projects</a>
-        </li>
-    </ul>
+    <div>
+        <a href="{% url 'index' %}">
+            <img src="{% static 'common/images/DDTlogo.png' %}" id="logo-pic" width="127" height="80">
+        </a>
+    </div>
+    <div class="nav-links">
+        <a href="{% url 'index' %}" class="nav-item">Home</a>
+        <a href="{% url 'projects' %}" class="nav-item">Projects</a>
+    </div>
 </div>
