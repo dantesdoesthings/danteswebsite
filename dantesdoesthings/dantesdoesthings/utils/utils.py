@@ -8,6 +8,8 @@ def serialize(obj):
     """Handles serializing non-standard objects into JSON."""
     if isinstance(obj, np.ndarray):
         return list(obj)
+    if isinstance(obj, np.bool_):
+        return bool(obj)
 
     return obj.__dict__
 
