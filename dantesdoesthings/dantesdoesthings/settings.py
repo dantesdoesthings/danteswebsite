@@ -17,6 +17,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'dantes_site',
     'dantes_data_generator',
+    'dantes_blog',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

@@ -1,0 +1,23 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block page_title %}
+DantesDoesThings: Blog→View tag→{{ tag }}
+{% endblock %}
+{% block page_head %}
+<h1>Blog→View tag→{{ tag }}</h1>
+{% endblock %}
+{% block main_content %}
+<div>
+    {% if posts %}
+        <ul>
+            {% for post in posts %}
+                <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>There are no posts.</p>
+    {% endif %}
+</div>
+{% endblock %}
+{% block javascript %}
+{% endblock %}

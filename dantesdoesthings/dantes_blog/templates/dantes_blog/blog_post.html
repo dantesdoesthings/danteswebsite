@@ -1,0 +1,15 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block page_title %}
+DantesDoesThings: Blog→{{ post.title }}
+{% endblock %}
+{% block page_head %}
+<h1>Blog→{{ post.title }}</h1>
+{% endblock %}
+{% block main_content %}
+<div>
+    {{ post.body }}
+</div>
+{% endblock %}
+{% block javascript %}
+{% endblock %}
