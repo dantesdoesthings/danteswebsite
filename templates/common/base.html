@@ -1,7 +1,6 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" type="text/css" href="{% static 'common/css/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', path='common/css/style.css') }}">
 <head>
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <meta charset="UTF-8">
@@ -21,7 +20,7 @@
         </div>
     {% include 'common/footer.html' %}
     </div>
-    <script src="{% static 'common/js/app.js' %}"></script>
+    <script src="{{ url_for('static', path='common/js/app.js') }}"></script>
     {% block javascript %}
     {% endblock %}
 </div>

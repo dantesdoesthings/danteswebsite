@@ -3,10 +3,10 @@ import json
 import numpy as np
 
 from django.shortcuts import render
-from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse
 
-from .functional_code import data_generation
-from dantesdoesthings.utils import utils
+from dantes_api.data_generator import data_generation
+from dantes_webapp.utils import utils
 
 
 def data_generator(request):
