@@ -18,9 +18,9 @@ async def home(request: Request):
     return templates.TemplateResponse('dantes_site/index.html', {'request': request, 'data': data})
 
 
-@app.get("/page/{page_name}")
-async def page(page_name: str):
+@app.get("/projects")
+async def page(request: Request):
     data = {
-        "page": page_name
+        "page": "Projects"
     }
-    return {"data": data}
+    return templates.TemplateResponse('dantes_site/projects.html', {'request': request, 'data': data})

@@ -1,5 +1,4 @@
 {% extends 'common/base.html' %}
-{% load static %}
 {% block page_title %}
 DantesDoesThings Projects
 {% endblock %}
@@ -7,19 +6,19 @@ DantesDoesThings Projects
 <h1>Projects</h1>
 {% endblock %}
 {% block main_content %}
-<h2>Welcome to the DantesDoesThings projects page!</h2>
+<h2>Welcome to the DantesDoesThings projects page</h2>
 Here are the current projects and a brief summary of each.
-All projects make at least some use of Django in order to operate within the confines of the website.
-<p><a href="{% url 'data_generator' %}">Data Generator</a><br />
-    An app for generating synthetic data.<br />
-    Click to add/remove points for your dataset to pass through, select options, and create synthetic data for whatever purposes you may have.<br />
+All projects make at least some use of FastAPI in order to operate within the confines of the website.
+<p><a href="/projects/data_generator">Data Generator</a><br>
+    An app for generating synthetic data.<br>
+    Click to add/remove points for your dataset to pass through, select options, and create synthetic data for whatever purposes you may have.<br>
     <b>Python tools used</b>: Standard library - JSON reading/writing; NumPy - arrays, matrix operations, linear algebra tools.
     <b>Other tools used</b>: Javascript, AJAX
 </p>
-<p><a href="{% url 'dantes_blog' %}">Blog</a><br />
-    A basic personal blog.<br />
-    Feel free to browse. I plan to write about any further projects in detail as I create them.<br />
-    <b>Python tools used</b>: Django<br />
+<p><a href="/projects/blog">Blog</a><br>
+    A basic personal blog.<br>
+    Feel free to browse. I plan to write about any further projects in detail as I create them.<br>
+    <b>Python tools used</b>: FastAPI<br>
     <b>Other tools used</b>: Basic database usage and access
 </p>
 {% endblock %}
