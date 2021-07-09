@@ -24,3 +24,11 @@ async def page(request: Request):
         "page": "Projects"
     }
     return templates.TemplateResponse('dantes_site/projects.html', {'request': request, 'data': data})
+
+
+@app.get("/blog")
+async def page(request: Request):
+    data = {
+        "page": "Blog"
+    }
+    return templates.TemplateResponse('dantes_blog/blog.html', {'request': request, 'data': data})
