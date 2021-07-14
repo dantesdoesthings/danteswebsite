@@ -9,7 +9,7 @@ var outputStyleCSV = document.getElementById('output-style-csv');
 var formElement = document.getElementById('calculation-form');
 var pointValueElement = document.getElementById('point-value-container');
 var curveValues = [];
-var pointsChanged = true;
+var doCurveUpdate = true;
 // Values for later use
 var POINT_COLOR = 'rgba(0, 0, 150, 1)';
 var POINT_BORDER_COLOR = 'rgba(0, 0, 0, 1)';
@@ -137,9 +137,9 @@ function drawCurves() {
         drawAllPoints();
     }
     // Calculate points to make tiny segments from
-    if (pointsChanged && pointList.length > 1) {
+    if (doCurveUpdate && pointList.length > 1) {
         submitCalculationAjax(false, performDraw);
-        pointsChanged = false;
+        doCurveUpdate = false;
     } else {
         performDraw();
     }
@@ -207,7 +207,6 @@ function submitCalculationAjax(writeResults, callback) {
     }
     // Sending all of the data
     var json_str = JSON.stringify(result_json)
-    console.log(json_str)
     xhr.send(json_str);
 }
 
@@ -221,7 +220,7 @@ function copyDataToClipboard() {
 function addPoint(x, y) {
     pointList.push([x, y])
     pointList.sort(function(a, b){return a[0] - b[0]})
-    pointsChanged = true;
+    doCurveUpdate = true;
 }
 // Removes a point close to a particular location
 function removePoint(x, y) {
@@ -233,7 +232,7 @@ function removePoint(x, y) {
         }
     }
     pointList.sort(function(a, b){return a[0] - b[0]})
-    pointsChanged = true;
+    doCurveUpdate = true;
 }
 // Handles canvas clicks
 function onCanvasClick(e) {
@@ -282,7 +281,7 @@ function reversePointCoordinates(pointInput) {
     for (var pnt of pointInput) {
         resultList.push([
             (pnt[0] - xMinVal) / mathWidth * DRAW_WIDTH + AXES_DISTANCE,
-            (yMinVal - pnt[1]) / mathWidth * DRAW_HEIGHT + DRAW_HEIGHT
+            (yMinVal - pnt[1]) / mathHeight * DRAW_HEIGHT + DRAW_HEIGHT
         ]);
     }
     return resultList
@@ -301,6 +300,10 @@ document.getElementById('calculation-form').addEventListener('submit', function 
 });
 document.getElementById('copy-clipboard').addEventListener('click', copyDataToClipboard);
 canvas.addEventListener('click', onCanvasClick);
+document.getElementById('x-min-field').addEventListener('change', () => doCurveUpdate = true)
+document.getElementById('x-max-field').addEventListener('change', () => doCurveUpdate = true)
+document.getElementById('y-min-field').addEventListener('change', () => doCurveUpdate = true)
+document.getElementById('y-max-field').addEventListener('change', () => doCurveUpdate = true)
 for (inputElement of formElement.getElementsByTagName('input')) {
     inputElement.addEventListener('change', updateCanvas);
 }

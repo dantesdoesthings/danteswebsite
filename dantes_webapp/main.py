@@ -47,9 +47,5 @@ async def page(request: Request):
 
 @app.post('/projects/data_generator', response_model=DataGeneratorResult, status_code=200)
 async def page(data_gen_call: DataGeneratorCall):
-    data = {
-        'page': 'Project Data Generator'
-    }
     result = submit_data(data_gen_call)
-    print(result)
     return result
