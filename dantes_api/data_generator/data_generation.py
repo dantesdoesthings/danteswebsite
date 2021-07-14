@@ -1,13 +1,13 @@
 """Contains code for generating data."""
-import json
 import typing
 
 import numpy as np
 
-from dantes_api.utils.utils import serialize
 
-
-def generate_data(input_points: list, graph_range: list, num_output_vals: int=20, style: str= 'linear') -> list:
+def generate_data(input_points: typing.Union[list, np.ndarray],
+                  graph_range: typing.Union[list, np.ndarray],
+                  num_output_vals: int = 20,
+                  style: str = 'linear') -> typing.Tuple[np.ndarray, np.ndarray, np.ndarray]:
     """Generates data based on the input parameters.
 
     :param input_points: The list of points in form [[x-vals], [y-vals]] to have the data pass through.
@@ -17,12 +17,15 @@ def generate_data(input_points: list, graph_range: list, num_output_vals: int=20
     :return: A list of generated values in form [[x-vals], [y-vals]]
     """
     if style == 'linear':
-        return generate_linear_data(input_points, graph_range, num_output_vals)
+        lin_result = generate_linear_data(input_points, graph_range, num_output_vals)
+        return lin_result[0], lin_result[1], np.empty(0)
     elif style == 'spline':
         return generate_natural_cubic_spline_data(input_points, graph_range, num_output_vals)
 
 
-def generate_linear_data(input_points: list, graph_range: list, num_output_vals: int=20) -> list:
+def generate_linear_data(input_points: typing.Union[list, np.ndarray],
+                         graph_range:typing.Union[list, np.ndarray],
+                         num_output_vals: int = 20) -> typing.Tuple[np.ndarray, np.ndarray]:
     """Generates data based on the input parameters.
 
     Creates a piecewise linear function through the input points, then gives back values that would have
@@ -42,12 +45,14 @@ def generate_linear_data(input_points: list, graph_range: list, num_output_vals:
     # Find the values
     y_vals = np.interp(x_vals, input_points[0], input_points[1])
 
-    return [x_vals, y_vals]
+    return x_vals, y_vals
 
 
-def generate_cubic_cardinal_spline_data(input_points: list, graph_range: list,
-                                        num_output_vals: int=20, tension: float=0.9,
-                                        num_segments: int=50) -> list:
+def generate_cubic_cardinal_spline_data(input_points: typing.Union[list, np.ndarray],
+                                        graph_range: typing.Union[list, np.ndarray],
+                                        num_output_vals: int = 20,
+                                        tension: float = 0.9,
+                                        num_segments: int = 50) -> typing.Tuple[np.ndarray, np.ndarray, np.ndarray]:
     """Generates data based on the input parameters.
 
     Creates a spline function through the input points, then gives back values that would have
@@ -104,14 +109,14 @@ def generate_cubic_cardinal_spline_data(input_points: list, graph_range: list,
     x_vals = np.arange(graph_range[0] + point_distance, graph_range[0] + width, point_distance)[:num_output_vals]
     y_vals = np.interp(x_vals, spline_calcs[0], spline_calcs[1])
 
-    return [x_vals, y_vals, spline_calcs]
+    return x_vals, y_vals, spline_calcs
 
 
 def generate_natural_cubic_spline_data(
         input_points: typing.Union[list, np.ndarray],
         graph_range: list,
         num_output_vals: int = 20,
-        num_segments: int = 20) -> list:
+        num_segments: int = 20) -> typing.Tuple[np.ndarray, np.ndarray, np.ndarray]:
     """Generates data based on the input parameters.
 
     Creates a spline function through the input points, then gives back values that would have
@@ -187,4 +192,4 @@ def generate_natural_cubic_spline_data(
     x_draw_locations = np.digitize(draw_x, x) - 1
     draw_y = np.array([interval_func(draw_x[j], x_draw_locations[j]) for j in range(len(draw_x))])
 
-    return [x_output, y_output, np.array([draw_x, draw_y])]
+    return x_output, y_output, np.array([draw_x, draw_y])

@@ -179,12 +179,12 @@ function submitCalculationAjax(writeResults, callback) {
     for (var pair of form_values.entries()) {
         result_json[pair[0]] = pair[1];
     }
-    result_json['point-values'] = getPointCoordinates();
+    result_json['pointValues'] = getPointCoordinates();
 
     // Necessary XMLHttpRequest steps
-    xhr.open('POST', 'submit_data', true);
+    xhr.open('POST', '', true);
     xhr.setRequestHeader('content-type', 'application/json');
-    xhr.setRequestHeader("X-CSRFToken", document.getElementsByName('csrfmiddlewaretoken')[0].value);
+    //xhr.setRequestHeader("X-CSRFToken", document.getElementsByName('csrfmiddlewaretoken')[0].value);
 
     // What to do when actually calling the POST
     xhr.onload = function () {
@@ -197,7 +197,7 @@ function submitCalculationAjax(writeResults, callback) {
                     result_element.innerHTML = JSON.stringify(result['data'])
                 }
             }
-            curveValues = reversePointCoordinates(result['curve-values'])
+            curveValues = reversePointCoordinates(result['curveValues'])
             if (typeof callback == 'function') callback();
         }
     };
@@ -207,6 +207,7 @@ function submitCalculationAjax(writeResults, callback) {
     }
     // Sending all of the data
     var json_str = JSON.stringify(result_json)
+    console.log(json_str)
     xhr.send(json_str);
 }
 

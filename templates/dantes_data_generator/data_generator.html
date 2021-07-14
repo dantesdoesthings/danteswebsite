@@ -1,5 +1,4 @@
 {% extends 'common/base.html' %}
-{% load static %}
 {% block page_title %}
 DantesDoesThings: Data Generator
 {% endblock %}
@@ -20,20 +19,19 @@ DantesDoesThings: Data Generator
         </div>
         <div>
             <form method="POST" name="dataInfoForm" id="calculation-form">
-                {% csrf_token %}
                 <fieldset>
-                    x-min: <input type="text" name="x-min" value="0" id="x-min-field" size="10" />
-                    x-max: <input type="text" name="x-max" value="100" id="x-max-field" size="10" /><br />
-                    y-min: <input type="text" name="y-min" value="0" id="y-min-field" size="10" />
-                    y-max: <input type="text" name="y-max" value="100" id="y-max-field" size="10" />
+                    x-min: <input type="text" name="xMin" value="0" id="x-min-field" size="10" />
+                    x-max: <input type="text" name="xMax" value="100" id="x-max-field" size="10" /><br />
+                    y-min: <input type="text" name="yMin" value="0" id="y-min-field" size="10" />
+                    y-max: <input type="text" name="yMax" value="100" id="y-max-field" size="10" />
                 </fieldset>
                 <fieldset>
                     Points
-                    <input type="radio" name="points-action" value="add" id="points-action-add" checked /> add
-                    <input type="radio" name="points-action" value="remove" /> remove <br>
+                    <input type="radio" name="pointsAction" value="add" id="points-action-add" checked /> add
+                    <input type="radio" name="pointsAction" value="remove" /> remove <br>
                 </fieldset>
                 <fieldset>
-                    Number of values to generate: <input type="text" name="num_vals" value="20" size="6" />
+                    Number of values to generate: <input type="text" name="numVals" value="20" size="6" />
                 </fieldset>
                 <fieldset>
                     Interpolation
@@ -77,5 +75,5 @@ DantesDoesThings: Data Generator
 </div>
 {% endblock %}
 {% block javascript %}
-<script src="{% static 'dantes_data_generator/js/app.js' %}"></script>
+<script src="{{ url_for('static', path='dantes_data_generator/js/app.js') }}"></script>
 {% endblock %}
