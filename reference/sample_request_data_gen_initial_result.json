@@ -1,0 +1,58 @@
+{
+  "descriptions": [
+    {
+      "timeVals": {
+        "numPoints": 100,
+        "distribution": "even",
+        "distParams": [
+          100000000,
+          100100000
+        ]
+      },
+      "metricDescriptions": [
+        {
+          "metricName": "memoryUsage",
+          "dataVals": {
+            "distribution": "uniform",
+            "distParams": [
+              100,
+              110
+            ]
+          }
+        },
+        {
+          "metricName": "cpuUsage",
+          "dataVals": {
+            "distribution": "uniform",
+            "distParams": [
+              200,
+              500
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "timeVals": {
+        "numPoints": 500,
+        "distribution": "uniform",
+        "distParams": [
+          100000000,
+          100001000
+        ]
+      },
+      "metricDescriptions": [
+        {
+          "metricName": "requestLatencies",
+          "dataVals": {
+            "distribution": "uniform",
+            "distParams": [
+              100,
+              150
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
