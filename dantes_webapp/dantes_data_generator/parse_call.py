@@ -19,7 +19,7 @@ def submit_data(data_gen_call: DataGeneratorCall):
         }
     elif data_gen_call.style == 'csv':
         result = {
-            'data': [utils.covert_time_series_to_csv([x_vals, y_vals])],
+            'data': [utils.convert_time_series_to_csv([x_vals, y_vals])],
         }
     else:
         raise ValueError('Data generation call error: "style" can only be "json" or "csv". \n'
