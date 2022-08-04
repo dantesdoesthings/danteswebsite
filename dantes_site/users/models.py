@@ -20,6 +20,7 @@ class UserProfileManager(BaseUserManager):
     def create_superuser(self, email, name, password):
         user = self.create_user(email, name, password)
         user.is_superuser = True
+        user.is_staff =True
 
         user.save(using=self._db)
 
@@ -32,10 +33,12 @@ class User(AbstractBaseUser, PermissionsMixin):
     # Arbitrary name, functions as display name
     name = models.CharField(max_length=100)
     # Counter that allows people with identical names to be distinguished from each other
-    name_counter = models.IntegerField()
+    name_counter = models.IntegerField(null=True)
     created_date = models.DateTimeField(auto_now_add=True)
     last_login = models.DateTimeField(auto_now=True)
-    is_verified = models.BooleanField()
+    is_verified = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
 
     objects = UserProfileManager()
 

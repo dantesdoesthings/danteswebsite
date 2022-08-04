@@ -11,4 +11,15 @@
         <a href="" class="nav-item">Blog</a>
 <!--        TODO: Hook up the blog using url 'dantes_blog'-->
     </div>
+    <div class="account-links">
+        {% if user.is_active %}
+        <a href="{% url 'users:account' %}">Account</a>
+        <br>
+        <a href="{% url 'users:logout' %}">Logout</a>
+        {% else %}
+        <a href="{% url 'users:login' %}">Login</a>
+        <br>
+        <a href="{% url 'users:register' %}">Register</a>
+        {% endif %}
+    </div>
 </div>

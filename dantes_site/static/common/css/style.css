@@ -21,7 +21,6 @@ h2, h3 {
 color: black;
 }
 .nav-item {
-display: inline;
 margin: 0 0.5em;
 }
 .page-title {
@@ -55,9 +54,10 @@ top: 0;
 padding: 0;
 box-shadow: 0 8px 6px -6px #000;
 border-radius: 0 0 0.5em 0.5em;
+display: flex;
+justify-content: space-between;
 }
 .navbar img{
-float: left;
 padding: 0.5em 0 0.5em 2em;
 }
 .navbar a {
@@ -66,10 +66,12 @@ text-decoration: none;
 font-weight: normal;
 }
 .nav-links {
-margin: auto;
 width: 50%;
-height: 100%;
 padding: 2em 0;
+}
+.account-links {
+padding: 2em;
+font-size: medium;
 }
 .page-head {
 margin: 0.5em 1.0em;

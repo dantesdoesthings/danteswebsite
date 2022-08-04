@@ -6,5 +6,5 @@ urlpatterns = [
     path('', include('site_base.urls')),
     path('admin/', admin.site.urls),
     path('data_generator/', include('dantes_data_generator.urls')),
-    # path('blog/', include('dantes_blog.urls')),
+    path('users/', include(('users.urls', 'users'), namespace='users')),
 ]

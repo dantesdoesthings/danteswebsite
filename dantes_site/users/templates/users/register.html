@@ -1,0 +1,16 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block page_title %}
+DantesDoesThings Register
+{% endblock %}
+{% block page_head %}
+<h1>Register</h1>
+{% endblock %}
+{% block main_content %}
+<form method="post" class="form-group">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Register">
+</form>
+<p>Already registered? <a href="{% url 'users:login' %}">Login</a></p>
+{% endblock %}

@@ -18,10 +18,10 @@ def register_view(request: HttpRequest):
             login(request, user)
             return redirect('index')  # TODO: Add verification page
         else:
-            context['registration_form'] = form
+            context['form'] = form
     elif request.method == 'GET':
-        context['registration_form'] = UserRegistrationForm()
-        return render(request, 'users/register.html', context)
+        context['form'] = UserRegistrationForm()
+    return render(request, 'users/register.html', context)
 
 
 def logout_view(request: HttpRequest):
@@ -30,6 +30,7 @@ def logout_view(request: HttpRequest):
 
 
 def login_view(request: HttpRequest):
+    context = {}
     user = request.user
     if user.is_authenticated:
         return redirect('index')
@@ -44,8 +45,10 @@ def login_view(request: HttpRequest):
             if user:
                 login(request, user)
                 return redirect('index')
+        context['form'] = form
     elif request.method == 'GET':
-        return render(request, 'users/login.html', {'login_form': UserAuthenticationForm()})
+        context['form'] = UserAuthenticationForm()
+    return render(request, 'users/login.html', context)
 
 
 @login_required
