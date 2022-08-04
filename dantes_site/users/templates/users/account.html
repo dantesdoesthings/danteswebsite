@@ -1,0 +1,13 @@
+{% extends "common/base.html" %}
+
+{% load static %}
+{% block page_title %}
+DantesDoesThings Account Details
+{% endblock %}
+{% block page_head %}
+<h1>Account Details</h1>
+{% endblock %}
+{% block main_content %}
+<p><b>Email</b>: {{ user.email }}</p>
+<p><b>Display name</b>: {{ user.name }}</p>
+{% endblock content %}

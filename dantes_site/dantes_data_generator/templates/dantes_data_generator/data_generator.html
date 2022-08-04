@@ -1,0 +1,81 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block page_title %}
+DantesDoesThings: Data Generator
+{% endblock %}
+{% block page_head %}
+<h1>Data Generator</h1>
+{% endblock %}
+{% block main_content %}
+<div>
+    Fill in details and select options on the right.
+    Add points for the graph to pass through by clicking on the canvas.
+    Remove points by selecting "remove" and clicking on the points you want removed.
+    Click submit to calculate the values of your generated data (shown below the graph).
+</div>
+<div class="split-content-rows-2">
+    <div class="split-content-cols-2">
+        <div>
+            <canvas id="graph-canvas" width="600" height="400"></canvas>
+        </div>
+        <div>
+            <form method="POST" name="dataInfoForm" id="calculation-form">
+                {% csrf_token %}
+                <fieldset>
+                    x-min: <input type="text" name="xMin" value="0" id="x-min-field" size="10" />
+                    x-max: <input type="text" name="xMax" value="100" id="x-max-field" size="10" /><br />
+                    y-min: <input type="text" name="yMin" value="0" id="y-min-field" size="10" />
+                    y-max: <input type="text" name="yMax" value="100" id="y-max-field" size="10" />
+                </fieldset>
+                <fieldset>
+                    Points
+                    <input type="radio" name="pointsAction" value="add" id="points-action-add" checked /> add
+                    <input type="radio" name="pointsAction" value="remove" /> remove <br>
+                </fieldset>
+                <fieldset>
+                    Number of values to generate: <input type="text" name="numVals" value="20" size="6" />
+                </fieldset>
+                <fieldset>
+                    Interpolation
+                    <input type="radio" name="interp" value="linear" checked id="interp-linear" /> linear
+                    <input type="radio" name="interp" value="spline" /> spline <br>
+                </fieldset>
+                <fieldset>
+                    Style
+                    <input type="radio" name="style" value="csv" checked id="output-style-csv" /> CSV
+                    <input type="radio" name="style" value="json" /> JSON <br>
+                </fieldset>
+                <fieldset>
+                    <button type="submit">Calculate</button><br>
+                </fieldset>
+            </form>
+            <div>
+                <h4>
+                    Point Values
+                </h4>
+                <textarea id="point-value-container">
+
+                </textarea>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="full-center" style="height:10%">
+            <div style="padding: 0 0.5em 0 0;">
+                Generator Results
+            </div>
+            <div>
+                <button id="copy-clipboard" disabled>Copy to Clipboard</button>
+            </div>
+        </div>
+        <div class="full-center" style="height:90%">
+            <textarea id="data-generator-results">
+
+            </textarea>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block javascript %}
+<script src="{% static 'dantes_data_generator/js/app.js' %}"></script>
+{% endblock %}
