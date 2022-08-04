@@ -4,6 +4,7 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import UserCreationForm
 from .models import User
 
+# TODO: Import cleanup all over. Modify settings to not be in debug/dev mode.
 
 class UserRegistrationForm(forms.ModelForm):
     name = forms.CharField(label='Display Name', max_length=100)
