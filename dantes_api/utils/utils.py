@@ -14,7 +14,7 @@ def serialize(obj):
     return obj.__dict__
 
 
-def covert_time_series_to_csv(time_series: list):
+def convert_time_series_to_csv(time_series: list):
     """Coverts a time series to a csv-formatted string.
 
     :param time_series: A time series of form [[time-values], [data-values]]
