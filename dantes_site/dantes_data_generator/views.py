@@ -41,5 +41,4 @@ def submit_data(request: HttpRequest):
             result['curveValues'] = generated_data[2].T
 
         response = JsonResponse(result, safe=False, json_dumps_params={'default': utils.serialize})
-        print(result)
         return response
