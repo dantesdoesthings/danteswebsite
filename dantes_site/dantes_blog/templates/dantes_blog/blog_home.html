@@ -1,0 +1,15 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block page_title %}
+DantesDoesThings Blog Home
+{% endblock %}
+{% block page_head %}
+<h1>Blog</h1>
+{% endblock %}
+{% block main_content %}
+<h2>Most Recent Blogs</h2>
+{% for blog in recent_blogs %}
+<a href="/{{ blog.blog_slug }}/">{{ blog.title }}</a>
+{% endfor %}
+<h2><a href="{% url 'blog:blog_archive' %}">Archive</a></h2>
+{% endblock %}

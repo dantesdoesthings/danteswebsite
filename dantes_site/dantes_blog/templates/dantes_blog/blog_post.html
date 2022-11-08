@@ -1,0 +1,11 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block page_title %}
+DantesDoesThings Blog Home
+{% endblock %}
+{% block page_head %}
+<h1>{{ blog.title }}</h1>
+{% endblock %}
+{% block main_content %}
+{{ blog.content|safe }}
+{% endblock %}

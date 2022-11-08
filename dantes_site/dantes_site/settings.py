@@ -17,17 +17,17 @@ from . import secrets
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
+# Load env based settings, prod by default
+dev_mode = False
+if dev_mode:
+    from .dev_settings import *
+else:
+    from .prod_settings import *
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = secrets.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
-ALLOWED_HOSTS = ['www.dantesdoesthings.com']
 
 
 # Application definition
@@ -39,9 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'ckeditor',
+    'ckeditor_uploader',
     'site_base.apps.SiteBaseConfig',
     'users.apps.UsersConfig',
     'dantes_data_generator.apps.DantesDataGeneratorConfig',
+    'dantes_blog.apps.DantesBlogConfig',
 ]
 
 MIDDLEWARE = [
@@ -67,6 +70,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -123,8 +127,13 @@ STATICFILES_DIRS = [
     BASE_DIR / 'dantes_data_generator' / 'static',
     BASE_DIR / 'site_base' / 'static',
     BASE_DIR / 'users' / 'static',
+    BASE_DIR / 'dantes_blog' / 'static'
 ]
-STATIC_ROOT = BASE_DIR.parent/'static'
+STATIC_ROOT = BASE_DIR.parent / 'static'
+
+# Uploaded media files
+MEDIA_ROOT = BASE_DIR.parent / 'uploads'
+MEDIA_URL = 'media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -132,14 +141,6 @@ STATIC_ROOT = BASE_DIR.parent/'static'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.User'
-
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-SECURE_HSTS_SECONDS = 3600
-SECURE_HSTS_PRELOAD = True
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
 LOGGING = {
     'version': 1,
@@ -159,3 +160,8 @@ LOGGING = {
         },
     },
 }
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+# Plugins
+CKEDITOR_UPLOAD_PATH = 'upload/'
