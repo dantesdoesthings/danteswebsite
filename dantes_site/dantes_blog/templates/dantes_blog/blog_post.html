@@ -7,5 +7,6 @@ DantesDoesThings Blog Home
 <h1>{{ blog.title }}</h1>
 {% endblock %}
 {% block main_content %}
+<p>Tags: {% for tag in blog.blog_tags.all %}{{ tag }} {% endfor %}</p>
 {{ blog.content|safe }}
 {% endblock %}

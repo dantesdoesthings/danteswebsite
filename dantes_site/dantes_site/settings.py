@@ -18,7 +18,7 @@ from . import secrets
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Load env based settings, prod by default
-dev_mode = False
+dev_mode = True
 if dev_mode:
     from .dev_settings import *
 else:
@@ -132,8 +132,9 @@ STATICFILES_DIRS = [
 STATIC_ROOT = BASE_DIR.parent / 'static'
 
 # Uploaded media files
-MEDIA_ROOT = BASE_DIR.parent / 'uploads'
-MEDIA_URL = 'media/'
+if dev_mode:
+    MEDIA_ROOT = BASE_DIR.parent / 'uploads'
+    MEDIA_URL = 'media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

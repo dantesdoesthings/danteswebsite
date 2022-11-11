@@ -15,7 +15,11 @@ def blog_home(request: HttpRequest):
 
 
 def blog_archive(request: HttpRequest):
-    return render(request, 'dantes_blog/blog_archive.html')
+    blogs = BlogPost.objects.order_by('-created_on')
+    context = {
+        'blogs': blogs,
+    }
+    return render(request, 'dantes_blog/blog_archive.html', context=context)
 
 
 def blog_post(request: HttpRequest, slug: str):

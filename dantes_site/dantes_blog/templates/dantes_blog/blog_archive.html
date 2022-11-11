@@ -4,11 +4,11 @@
 DantesDoesThings Blog Home
 {% endblock %}
 {% block page_head %}
-<h1>Blog</h1>
+<h1>Archive</h1>
 {% endblock %}
 {% block main_content %}
-<h2>Most Recent Blogs</h2>
+<h2>Blogs</h2>
 {% for blog in blogs %}
-<a href="/{{ blog.blog_slug }}/">{{ blog.title }}</a>
+<p><a href="{% url 'blog:blog_post' slug=blog.slug %}">{{ blog.title }}</a> {{ blog.created_on }}</p>
 {% endfor %}
 {% endblock %}
