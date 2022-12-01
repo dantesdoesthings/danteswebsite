@@ -1,8 +1,10 @@
+import os
+
 from django.http import HttpRequest
 
 
 def site_globals(request: HttpRequest) -> dict:
-    if request.get_port() == 8001:
+    if os.environ.get("DANTES_ENV") == 'personal':
         return {
             'site_name': 'DantesDoesThings',
             'site_email': 'dantesdoesthings@gmail.com',

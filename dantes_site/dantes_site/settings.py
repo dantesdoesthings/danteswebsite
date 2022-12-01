@@ -18,7 +18,7 @@ from . import secrets
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Load env based settings, prod by default
-dev_mode = False
+dev_mode = True
 if dev_mode:
     from .dev_settings import *
 else:
