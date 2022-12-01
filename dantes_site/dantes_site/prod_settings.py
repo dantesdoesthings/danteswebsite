@@ -1,7 +1,10 @@
 # Settings for running in prod
 DEBUG = False
 
-ALLOWED_HOSTS = ['www.dantesdoesthings.com']
+ALLOWED_HOSTS = [
+    'www.dantesdoesthings.com',
+    'www.mbaramidze.com',
+]
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_SSL_REDIRECT = True

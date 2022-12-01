@@ -8,7 +8,7 @@ server {
 server {
     listen 80;
     listen [::]:80;
-    server_name dantesdoesthings.com www.dantesdoesthings.com;
+    server_name dantesdoesthings.com www.dantesdoesthings.com mbaramidze.com www.mbaramidze.com;
 
     # Redirect all HTTP requests to HTTPS with a 301 Moved Permanently response.
     return 301 https://$host$request_uri;
@@ -25,13 +25,57 @@ server {
     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
 }
 
+server {
+    # Redirect HTTPS with no WWW to WWW
+    listen 443 ssl;
+    server_name mbaramidze.com;
+    return 301 https://www.mbaramidze.com$request_uri;
+    ssl_certificate /etc/letsencrypt/live/mbaramidze.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/mbaramidze.com/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+}
+
 
 server {
-    server_name www.dantesdoesthings.com;
+    server_name www.mbaramidze.com;
 
     # Pass on requests to Django listening at http://localhost:8000
     location / {
         proxy_pass http://localhost:8000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_redirect off;
+    }
+
+    # Serve static files directly
+    location /static {
+        autoindex on;
+        alias /data/danteswebsite/static/;
+    }
+
+    # Serve media files directly
+    location /media {
+        autoindex on;
+        alias /mnt/volume_nyc1_01/uploads/;
+    }
+
+    # HTTPS
+    listen 443 ssl;
+    ssl_certificate /etc/letsencrypt/live/mbaramidze.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/mbaramidze.com/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+}
+
+
+server {
+    server_name www.dantesdoesthings.com;
+
+    # Pass on requests to Django listening at http://localhost:8001
+    location / {
+        proxy_pass http://localhost:8001;
         proxy_set_header Host $host;
         proxy_set_header X-Forwarded-Proto $scheme;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;

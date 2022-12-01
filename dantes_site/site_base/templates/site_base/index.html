@@ -1,7 +1,7 @@
 {% extends 'common/base.html' %}
 {% load static %}
 {% block page_title %}
-DantesDoesThings Home
+{{ site_name }} Home
 {% endblock %}
 {% block page_head %}
 <h1>Home</h1>
@@ -16,7 +16,7 @@ I am currently in Marietta, Georgia, USA.
 <h3>How do I get ahold of you?</h3>
 Contact me at any time via:
 <br>
-<b>e-mail</b>: m.baramid@gmail.com
+<b>e-mail</b>: {{ site_email }}
 <br>
 <b>phone</b>: (309)-371-2263
 <h3>What's on this site?</h3>
